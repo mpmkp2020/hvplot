@@ -36,9 +36,13 @@ jobs:
 
     - &default
       stage: test
+      arch: arm64
       env: DESC="unit test with basic deps" CHANS=$CHANS_REL
       before_install:
-        - pip install pyctdev && doit miniconda_install && pip uninstall -y doit pyctdev
+        #- pip install pyctdev && doit miniconda_install && pip uninstall -y doit pyctdev
+        - wget -q "https://github.com/conda-forge/miniforge/releases/download/4.8.2-1/Miniforge3-4.8.2-1-Linux-aarch64.sh" -O miniconda.sh
+        - chmod +x miniconda.sh
+        - ./miniconda.sh -b -p $HOME/miniconda
         - export PATH="$HOME/miniconda/bin:$PATH" && hash -r
         - conda config --set always_yes True
         - conda install -c pyviz "pyctdev>=0.5" && doit ecosystem_setup
