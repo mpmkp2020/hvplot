@@ -45,7 +45,8 @@ jobs:
         - ./miniconda.sh -b -p $HOME/miniconda
         - export PATH="$HOME/miniconda/bin:$PATH" && hash -r
         - conda config --set always_yes True
-        - conda install -c pyviz "pyctdev>=0.5" && doit ecosystem_setup
+        - conda install -c pyviz "pyctdev>=0.5" 
+        - doit ecosystem_setup
       install:
         - doit env_create $CHANS_DEV --python=$PYTHON_VERSION
         - source activate test-environment
