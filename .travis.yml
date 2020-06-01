@@ -39,19 +39,19 @@ jobs:
       arch: arm64
       env: DESC="unit test with basic deps" CHANS=$CHANS_REL
       before_install:
-        #- pip install pyctdev && doit miniconda_install && pip uninstall -y doit pyctdev
         - pip install pyctdev
         - wget -q "https://github.com/conda-forge/miniforge/releases/download/4.8.2-1/Miniforge3-4.8.2-1-Linux-aarch64.sh" -O miniconda.sh
         - chmod +x miniconda.sh
         - ./miniconda.sh -b -p $HOME/miniconda
         - export PATH="$HOME/miniconda/bin:$PATH" && hash -r
         - conda config --set always_yes True
-        #- conda install -c pyviz "pyctdev>=0.5" 
         - doit ecosystem_setup
       install:
         - doit env_create $CHANS_DEV --python=$PYTHON_VERSION || true
         - source activate test-environment
-        - doit develop_install $CHANS_DEV -o tests
+        - pip install 'pandoc' 'pyctdev' 'coveralls' 'nose' 'flake8' 'parameterized' 'pytest' 'nbsmoke >=0.2.0' 'colorcet'
+        - conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve
+        #- doit develop_install $CHANS_DEV -o tests
         - doit env_capture
       script: doit test_unit
 
