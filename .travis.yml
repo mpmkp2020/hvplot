@@ -49,7 +49,7 @@ jobs:
         #- conda install -c pyviz "pyctdev>=0.5" 
         - doit ecosystem_setup
       install:
-        - doit env_create $CHANS_DEV --python=$PYTHON_VERSION
+        - doit env_create $CHANS_DEV --python=$PYTHON_VERSION || true
         - source activate test-environment
         - doit develop_install $CHANS_DEV -o tests
         - doit env_capture
