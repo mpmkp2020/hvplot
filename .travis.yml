@@ -39,22 +39,22 @@ jobs:
       arch: arm64
       env: DESC="unit test with basic deps" CHANS=$CHANS_REL
       before_install:
-        - if [ `uname -m` = 'aarch64' ]; then 
-            pip install pyctdev;
-            wget -q "https://github.com/conda-forge/miniforge/releases/download/4.8.2-1/Miniforge3-4.8.2-1-Linux-aarch64.sh" -O miniconda.sh;
-            chmod +x miniconda.sh;
-            ./miniconda.sh -b -p $HOME/miniconda;
-          fi
-        - export PATH="$HOME/miniconda/bin:$PATH" && hash -r;
+        #- if [ `uname -m` = 'aarch64' ]; then 
+        -    pip install pyctdev
+        -    wget -q "https://github.com/conda-forge/miniforge/releases/download/4.8.2-1/Miniforge3-4.8.2-1-Linux-aarch64.sh" -O miniconda.sh
+        -    chmod +x miniconda.sh
+        -    ./miniconda.sh -b -p $HOME/miniconda
+        #  fi
+        - export PATH="$HOME/miniconda/bin:$PATH" && hash -r
         - conda config --set always_yes True
         - doit ecosystem_setup
       install:
-        - if [ `uname -m` = 'aarch64' ]; then 
-            doit env_create $CHANS_DEV --python=$PYTHON_VERSION || true;
-            source activate test-environment;
-            conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve;
-            pip install 'pandoc' 'pyctdev' 'coveralls' 'nose' 'flake8' 'parameterized' 'pytest' 'nbsmoke >=0.2.0' 'colorcet';
-          fi
+        #- if [ `uname -m` = 'aarch64' ]; then 
+        -   doit env_create $CHANS_DEV --python=$PYTHON_VERSION || true
+        -   source activate test-environment
+        -   conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve
+        -   pip install 'pandoc' 'pyctdev' 'coveralls' 'nose' 'flake8' 'parameterized' 'pytest' 'nbsmoke >=0.2.0' 'colorcet'
+        #  fi
         - doit env_capture
       script: doit test_unit
 
@@ -62,33 +62,19 @@ jobs:
       <<: *default
       env: DESC="unit test with extra dependencies" CHANS=$CHANS_REL NAME="extra-deps-env"
       install:
-        - pip install rasterio
         - doit env_create $CHANS_DEV --python=$PYTHON_VERSION --name=$NAME || true
         - source activate $NAME
         - sudo apt update -y
         - sudo apt-get install libgdal-dev gfortran -y
         - conda install pip
         - conda update pip
-        - conda install numpy
-        - sudo add-apt-repository ppa:ubuntugis/ppa -y
-        - sudo apt-get update -y
-        - sudo apt-get install gdal-bin libgdal-dev -y
-        - pip install -U pip
-        - pip install rasterio
-        #- conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve
-        #- pip install 'pandoc' 'pyctdev' 'coveralls' 'nose' 'flake8' 'parameterized' 'pytest' 'nbsmoke >=0.2.0' 'colorcet'
-        #- conda install -c numba numba pyarrow retrying	
-        #- conda install 's3fs' 'scipy' 'pillow' 'selenium' 'dask' 'datashader>=0.6.5' 'notebook>=5.4' pandas asciitree 'networkx' 'streamz>=0.3.0' 'xarray' 'panel' 'numpy==1.18.4'  bokeh lxml
-        #- which python 
-        #- which pip
-        #- which python3.6
-        #- pip install cython
-        - pip install 'numpy==1.18.4' || true
-        #- conda install 'numpy==1.18.4'  #to be deleted
-        - ls /home/travis/miniconda/envs/extra-deps-env/lib/python3.6/site-packages/
-        #- conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
-        - pip install 'spatialpandas' 'rasterio'  || true #to be deleted
-        - pip install 'intake-parquet' 'intake-xarray' || true
+        - conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve
+        - pip install 'pandoc' 'pyctdev' 'coveralls' 'nose' 'flake8' 'parameterized' 'pytest' 'nbsmoke >=0.2.0' 'colorcet'
+        - conda install -c numba numba pyarrow retrying	
+        - conda install 's3fs' 'scipy' 'pillow' 'selenium' 'dask' 'datashader>=0.6.5' 'notebook>=5.4' pandas asciitree 'networkx' 'streamz>=0.3.0' 'xarray' 'panel' 'numpy==1.18.4'  bokeh lxml
+        - conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
+        #- pip install 'spatialpandas' 'rasterio'  || true
+        #- pip install 'intake-parquet' 'intake-xarray' || true
 
         - doit env_capture
       script: doit test_unit
@@ -102,15 +88,17 @@ jobs:
         - sudo apt update -y
         - sudo apt install libgraphviz-dev -y
         - sudo apt-get install libgdal-dev -y
+        - conda install pip
+        - conda update pip
         - conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve
         - pip install 'pandoc' 'pyctdev' 'coveralls' 'nose' 'flake8' 'parameterized' 'pytest' 'nbsmoke >=0.2.0' 'colorcet'
-        #- doit develop_install $CHANS_DEV -o tests -o examples
         - conda install -c numba numba pyarrow retrying	
-        - conda install 's3fs' 'scipy' 'pillow' 'selenium' 'dask' 'datashader>=0.6.5' 'notebook>=5.4' pandas asciitree 'networkx' 'streamz>=0.3.0' 'xarray' 'panel' numpy  bokeh lxml
-        - python3.6 -m pip install 'spatialpandas' 'rasterio'
+        - conda install 's3fs' 'scipy' 'pillow' 'selenium' 'dask' 'datashader>=0.6.5' 'notebook>=5.4' pandas asciitree 'networkx' 'streamz>=0.3.0' 'xarray' 'panel' 'numpy==1.18.4'  bokeh lxml
         - conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
-        - python3.6 -m pip install 'intake-parquet' 'intake-xarray' 'pygraphviz'
-        - conda install -c conda-forge firefox geckodriver
+        #- pip install 'spatialpandas' 'rasterio'  || true
+        #- pip install 'intake-parquet' 'intake-xarray' || true
+        - pip install 'intake-parquet' 'intake-xarray' 'pygraphviz'
+        - conda install -c conda-forge firefox geckodriver || true
         - doit env_capture
       script:
         - bokeh sampledata
