@@ -59,7 +59,7 @@ jobs:
       env: DESC="unit test with extra dependencies" CHANS=$CHANS_REL NAME="extra-deps-env"
       install:
         - doit env_create $CHANS_DEV --python=$PYTHON_VERSION --name=$NAME || true
-        - conda activate $NAME
+        - source activate $NAME
         - sudo apt update -y
         - sudo apt-get install libgdal-dev gfortran -y
         #- pip install 'numpy==1.18.4' || true
