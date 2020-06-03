@@ -97,7 +97,8 @@ jobs:
         - conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
         #- pip install 'spatialpandas' 'rasterio'  || true
         #- pip install 'intake-parquet' 'intake-xarray' || true
-        - pip install 'intake-parquet' 'intake-xarray' 'pygraphviz'
+        - pip install 'intake-parquet' 'intake-xarray' || true
+        - pip install 'pygraphviz' || true
         - conda install -c conda-forge firefox geckodriver || true
         - doit env_capture
       script:
