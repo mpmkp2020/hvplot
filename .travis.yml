@@ -74,6 +74,7 @@ jobs:
         - /home/travis/miniconda/envs/extra-deps-env/bin/python -m /home/travis/miniconda/envs/extra-deps-env/bin/pip install 'spatialpandas' 'rasterio' || true
         - /home/travis/miniconda/envs/extra-deps-env/bin/python3.6 -m /home/travis/miniconda/envs/extra-deps-env/bin/pip install 'spatialpandas' 'rasterio' || true
         #- conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
+        - pip install cython
         - pip install 'spatialpandas' 'rasterio' #to be deleted
         #- pip install 'intake-parquet' 'intake-xarray' 
 
