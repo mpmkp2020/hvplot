@@ -67,7 +67,7 @@ jobs:
         #- conda install -c numba numba pyarrow retrying	
         #- conda install 's3fs' 'scipy' 'pillow' 'selenium' 'dask' 'datashader>=0.6.5' 'notebook>=5.4' pandas asciitree 'networkx' 'streamz>=0.3.0' 'xarray' 'panel' 'numpy==1.18.4'  bokeh lxml
         - which python3.6
-        - python -m pip install 'spatialpandas' 'rasterio'
+        - $HOME/miniconda/envs/extra-deps-env/bin/python -m $HOME/miniconda/envs/extra-deps-env/bin/pip install 'spatialpandas' 'rasterio'
         - conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
         - pip install 'intake-parquet' 'intake-xarray' 
 
