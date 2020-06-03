@@ -61,7 +61,7 @@ jobs:
         - doit env_create $CHANS_DEV --python=$PYTHON_VERSION --name=$NAME || true
         - source activate $NAME
         - sudo apt update -y
-        - sudo apt-get install libgdal-dev -y
+        - sudo apt-get install libgdal-dev gfortran -y
         #- conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve
         #- pip install 'pandoc' 'pyctdev' 'coveralls' 'nose' 'flake8' 'parameterized' 'pytest' 'nbsmoke >=0.2.0' 'colorcet'
         #- conda install -c numba numba pyarrow retrying	
