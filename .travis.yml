@@ -6,9 +6,6 @@ language: generic
 sudo: false
 os:
   - linux
-arch:
-  - amd64
-  - arm64
 
 dist: xenial
 
@@ -32,6 +29,10 @@ stages:
     if: tag =~ ^v(\d+|\.)+([a-z]|rc)\d+$
   - name: package
     if: tag =~ ^v(\d+|\.)*[^a-z]\d*$
+
+arch:
+  - amd64
+  - arm64
 
 jobs:
   include:
