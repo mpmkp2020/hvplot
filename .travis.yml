@@ -58,6 +58,7 @@ jobs:
       <<: *default
       env: DESC="unit test with extra dependencies" CHANS=$CHANS_REL NAME="extra-deps-env"
       install:
+        - pip install rasterio
         - doit env_create $CHANS_DEV --python=$PYTHON_VERSION --name=$NAME || true
         - source activate $NAME
         - sudo apt update -y
