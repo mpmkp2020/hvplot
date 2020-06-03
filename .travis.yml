@@ -61,7 +61,7 @@ jobs:
         - doit env_create $CHANS_DEV --python=$PYTHON_VERSION --name=$NAME || true
         - source activate $NAME
         - conda install pip
-        - cunda update pip
+        - conda update pip
         - conda install numpy
         - sudo apt update -y
         - sudo apt-get install libgdal-dev gfortran -y
