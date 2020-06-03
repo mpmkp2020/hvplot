@@ -65,18 +65,18 @@ jobs:
         - conda install pip
         - conda update pip
         - conda install numpy
-        - conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve
-        - pip install 'pandoc' 'pyctdev' 'coveralls' 'nose' 'flake8' 'parameterized' 'pytest' 'nbsmoke >=0.2.0' 'colorcet'
-        - conda install -c numba numba pyarrow retrying	
-        - conda install 's3fs' 'scipy' 'pillow' 'selenium' 'dask' 'datashader>=0.6.5' 'notebook>=5.4' pandas asciitree 'networkx' 'streamz>=0.3.0' 'xarray' 'panel' 'numpy==1.18.4'  bokeh lxml
-        - which python 
-        - which pip
-        - which python3.6
-        - pip install cython
+        #- conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve
+        #- pip install 'pandoc' 'pyctdev' 'coveralls' 'nose' 'flake8' 'parameterized' 'pytest' 'nbsmoke >=0.2.0' 'colorcet'
+        #- conda install -c numba numba pyarrow retrying	
+        #- conda install 's3fs' 'scipy' 'pillow' 'selenium' 'dask' 'datashader>=0.6.5' 'notebook>=5.4' pandas asciitree 'networkx' 'streamz>=0.3.0' 'xarray' 'panel' 'numpy==1.18.4'  bokeh lxml
+        #- which python 
+        #- which pip
+        #- which python3.6
+        #- pip install cython
         - pip install 'numpy==1.18.4' || true
-        - conda install 'numpy==1.18.4'  #to be deleted
+        #- conda install 'numpy==1.18.4'  #to be deleted
         - ls /home/travis/miniconda/envs/extra-deps-env/lib/python3.6/site-packages/
-        - conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
+        #- conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
         - pip install 'spatialpandas' 'rasterio'  || true #to be deleted
         - pip install 'intake-parquet' 'intake-xarray' || true
 
