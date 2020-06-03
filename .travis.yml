@@ -62,6 +62,9 @@ jobs:
         - source activate $NAME
         - sudo apt update -y
         - sudo apt-get install libgdal-dev gfortran -y
+        - pip install 'numpy==1.18.4' || true
+        - python -m pip install 'numpy==1.18.4' || true
+        - python3.6 -m pip install 'numpy==1.18.4' || true
         - conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve
         - pip install 'pandoc' 'pyctdev' 'coveralls' 'nose' 'flake8' 'parameterized' 'pytest' 'nbsmoke >=0.2.0' 'colorcet'
         - conda install -c numba numba pyarrow retrying	
@@ -71,14 +74,10 @@ jobs:
         - which python3.6
         - pip install cython
         - conda install 'numpy==1.18.4'  #to be deleted
-        - /home/travis/miniconda/envs/extra-deps-env/bin/python3.6 /home/travis/miniconda/envs/extra-deps-env/lib/python3.6/site-packages/pip install 'numpy==1.18.4'
         - ls /home/travis/miniconda/envs/extra-deps-env/lib/python3.6/site-packages/
-        - /home/travis/miniconda/envs/extra-deps-env/bin/python -m pip install 'spatialpandas' 'rasterio' || true
-        - /home/travis/miniconda/envs/extra-deps-env/bin/python3.6 -m pip install 'spatialpandas' 'rasterio' || true
         - conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
-        - pip install 'numpy==1.18.4' || true
         - pip install 'spatialpandas' 'rasterio'  || true #to be deleted
-        - pip install 'intake-parquet' 'intake-xarray' 
+        - pip install 'intake-parquet' 'intake-xarray' || true
 
         - doit env_capture
       script: doit test_unit
