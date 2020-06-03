@@ -6,6 +6,9 @@ language: generic
 sudo: false
 os:
   - linux
+arch:
+  - amd64
+  - arm64
 
 dist: xenial
 
