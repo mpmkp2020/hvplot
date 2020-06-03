@@ -39,7 +39,6 @@ jobs:
 
     - &default
       stage: test
-      arch: arm64
       env: DESC="unit test with basic deps" CHANS=$CHANS_REL
       before_install:
         - pip install pyctdev
