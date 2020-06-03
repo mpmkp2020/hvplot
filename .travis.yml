@@ -60,6 +60,8 @@ jobs:
       install:
         - doit env_create $CHANS_DEV --python=$PYTHON_VERSION --name=$NAME || true
         - source activate $NAME
+        - conda install pip
+        - cunda update pip
         - sudo apt update -y
         - sudo apt-get install libgdal-dev gfortran -y
         #- conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve
