@@ -69,11 +69,13 @@ jobs:
         - which python 
         - which pip
         - which python3.6
+        - conda install 'numpy==1.18.4'  #to be deleted
         - ls /home/travis/miniconda/envs/extra-deps-env/lib/python3.6/site-packages/
         - /home/travis/miniconda/envs/extra-deps-env/bin/python -m /home/travis/miniconda/envs/extra-deps-env/bin/pip install 'spatialpandas' 'rasterio' || true
         - /home/travis/miniconda/envs/extra-deps-env/bin/python3.6 -m /home/travis/miniconda/envs/extra-deps-env/bin/pip install 'spatialpandas' 'rasterio' || true
-        - conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
-        - pip install 'intake-parquet' 'intake-xarray' 
+        #- conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
+        - pip install 'spatialpandas' 'rasterio' #to be deleted
+        #- pip install 'intake-parquet' 'intake-xarray' 
 
         - doit env_capture
       script: doit test_unit
