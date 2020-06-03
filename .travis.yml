@@ -71,12 +71,13 @@ jobs:
         - which python3.6
         - pip install cython
         - conda install 'numpy==1.18.4'  #to be deleted
+        - /home/travis/miniconda/envs/extra-deps-env/bin/python3.6 /home/travis/miniconda/envs/extra-deps-env/lib/python3.6/site-packages/pip install 'numpy==1.18.4'
         - ls /home/travis/miniconda/envs/extra-deps-env/lib/python3.6/site-packages/
         - /home/travis/miniconda/envs/extra-deps-env/bin/python -m pip install 'spatialpandas' 'rasterio' || true
         - /home/travis/miniconda/envs/extra-deps-env/bin/python3.6 -m pip install 'spatialpandas' 'rasterio' || true
         #- conda install -c conda-forge/label/cf202003 'intake' thrift-cpp 
         - pip install 'numpy==1.18.4' || true
-        - pip install 'spatialpandas' 'rasterio'  || true#to be deleted
+        - pip install 'spatialpandas' 'rasterio'  || true #to be deleted
         #- pip install 'intake-parquet' 'intake-xarray' 
 
         - doit env_capture
