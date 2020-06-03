@@ -39,7 +39,7 @@ jobs:
       arch: arm64
       env: DESC="unit test with basic deps" CHANS=$CHANS_REL
       before_install:
-        - if [ `uname -m` = 'aarch64' ] then 
+        - if [ `uname -m` = 'aarch64' ]; then 
             pip install pyctdev;
             wget -q "https://github.com/conda-forge/miniforge/releases/download/4.8.2-1/Miniforge3-4.8.2-1-Linux-aarch64.sh" -O miniconda.sh;
             chmod +x miniconda.sh;
@@ -49,7 +49,7 @@ jobs:
         - conda config --set always_yes True
         - doit ecosystem_setup
       install:
-        - if [ `uname -m` = 'aarch64' ] then 
+        - if [ `uname -m` = 'aarch64' ]; then 
             doit env_create $CHANS_DEV --python=$PYTHON_VERSION || true;
             source activate test-environment;
             conda install pyzmq param holoviews blas beautifulsoup4 bzip2 conda-build  dbus expat filelock fontconfig  glib  glob2  gmp  gst-plugins-base gstreamer hvplot libarchive  libedit liblief libuuid libxcb libxml2 lzo matplotlib ncurses patchelf pcre pkginfo psutil py-lief python-libarchive-c  ripgrep sip soupsieve;
